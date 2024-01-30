@@ -1,0 +1,42 @@
+class Solution(object):
+    def maximumUnits(self, boxTypes, truckSize):
+        """
+        :type boxTypes: List[List[int]]
+        :type truckSize: int
+        :rtype: int
+        """
+        # ATTEMPT 2 - determine the maximum amount of units by putting on boxes w the most units on the truck first
+        # sort box types by largest num of units
+        boxSorted = sorted(boxTypes, key=lambda x: x[1], reverse=True)
+
+        totalUnits = 0
+        totalBoxes = 0
+        
+        for boxType in boxSorted:
+            for boxNum in range(boxType[0]):
+                totalUnits += boxType[1]
+                totalBoxes +=1
+                if totalBoxes >= truckSize:
+                    return totalUnits
+        
+        return totalUnits
+
+
+        # ATTEMPT 1 - did not implement total count to optimize units able to be put on box
+        # #iterate through arr to count how many units (multiply unit by box) being put on truck 
+
+        # totalUnits = 0
+        # totalBoxes = 0
+        
+        # # box = [numberOfBoxes, numberOfUnitsPerBox]
+        # for box in boxTypes:
+        #     totalUnits += box[0] * box[1]
+        #     totalBoxes += box[0]
+        #     # max num of boxes reached
+        #     if totalBoxes >= truckSize:
+        #         break
+
+        # return totalUnits
+        
+
+        
